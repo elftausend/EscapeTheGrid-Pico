@@ -45,7 +45,6 @@ def gen_rand_keys(min_keys: int, max_keys: int):
 
 def game_loop():
     keys = gen_rand_keys(2, MAX_KEYS)
-    print(keys)
     
     exit_door = unique_pos(keys)
     (px, py) = unique_pos(keys)
@@ -88,8 +87,11 @@ def game_loop():
         display.set_pen(90, 90, 90)
         display.rectangle(px, py, GRID_CONSTANT, GRID_CONSTANT)
     
-        display.update()
+        if keys_to_collect == 0 and (px, py) == exit_door:
+            print("End")
     
+        display.update()
+        
         utime.sleep(WAIT_UNTIL_NEXT_MOVE)
         
 
